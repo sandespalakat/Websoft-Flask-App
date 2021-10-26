@@ -1,0 +1,62 @@
+<!-- Create invoice page -->
+{% extends 'layout.html' %}
+{% block body %}
+<div class="container">
+    <div class="container">
+        <form method="POST" class="form-register" style="color:white">
+            {{ form.hidden_tag() }}
+            <br>
+            {{ form.candidate_id.label() }}
+            {{ form.candidate_id(class="form-control", id="candidate") }}
+
+            {{ form.course_id.label() }}
+            {{ form.course_id(class="form-control", id="course" ) }}
+
+            {{ form.amount.label() }}
+            {{ form.amount(class="form-control", placeholder="Amount") }}
+
+            {{ form.reason.label() }}
+            {{ form.reason(class="form-control", placeholder="Reason") }}
+
+            {{ form.date.label() }}
+            <div class="input-group date" data-provide="datepicker">
+                {{ form.date(class="datepicker", id="datepicker")}}
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-th"></span>
+                </div>
+            </div>
+            <br>
+
+
+            {{ form.submit(class="btn btn-lg btn-block btn-primary ") }}
+
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $('#candidate').change(function(){
+        var Id = $(this).val();
+    $.ajax({
+     type: "GET",
+     url : "/get-courses",
+     data: {c_id : Id},
+     contentType: 'json',
+     success: function(result){
+     courses = result.result
+     $('#course').empty()
+         for (i=0;i<courses.length;i++) {
+            $('<option/>').val(courses[i][0]).html(courses[i][1]).appendTo('#course');
+         }
+    },
+    error: function(result){
+         alert("ffff");
+    }
+  });
+    });
+</script>
+{% endblock %}

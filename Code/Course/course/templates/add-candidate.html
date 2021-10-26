@@ -1,0 +1,27 @@
+<!-- Add candidate page -->
+{% extends 'layout.html' %}
+{% block body %}
+    <div class="container">
+        <div class="container">
+            <form method="POST" class="form-register" style="color:white">
+            {{ form.hidden_tag() }}
+            <br>
+            {{ form.name.label() }}
+            {{ form.name(class="form-control", placeholder="Candidate Name") }}
+
+            {{ form.email.label() }}
+            {{ form.email(class="form-control", placeholder="Email Address") }}
+
+            {{ form.phone.label() }}
+            {{ form.phone(class="form-control", placeholder="Phone") }}
+
+            <br>
+
+
+            {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
+
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

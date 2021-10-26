@@ -1,0 +1,37 @@
+<!-- Assign course to a candidate page -->
+{% extends 'layout.html' %}
+{% block body %}
+<div class="container">
+    <div class="container">
+        <form method="POST" class="form-register" style="color:white">
+            {{ form.hidden_tag() }}
+            <br>
+            {{ form.candidate_id.label() }}
+            {{ form.candidate_id(class="form-control") }}
+
+            {{ form.course.label() }}
+            {{ form.course(class="form-control", placeholder="Course" ) }}
+
+            {{ form.total_fees.label() }}
+            {{ form.total_fees(class="form-control", placeholder="Total Fees") }}
+
+            {{ form.installment.label() }}
+            {{ form.installment(class="form-control", placeholder="Installment") }}
+
+            {{ form.doj.label() }}
+            <div class="input-group date" data-provide="datepicker">
+                {{ form.doj(class="datepicker", id="datepicker")}}
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-th"></span>
+                </div>
+            </div>
+            <br>
+
+
+            {{ form.submit(class="btn btn-lg btn-block btn-primary ") }}
+
+        </form>
+    </div>
+</div>
+
+{% endblock %}
